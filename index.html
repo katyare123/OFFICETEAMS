@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFFICE TEAMS</title>
+    <link rel="icon" href="https://th.bing.com/th/id/OIG3.U6mysBdKXx0y71.a.M1B?w=270&h=270&c=6&r=0&o=5&dpr=1.3&pid=ImgGn">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+       /* General Reset */
+* 
+    /* General Reset */
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            color: #ddd;
+            background: url('https://th.bing.com/th?id=OIP.Q1ppGz5JUcHQL5uTcXNgqgHaEK&w=333&h=187&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2');
+            background-size: cover;
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(9, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        header button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        header button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Authentication Section */
+        #auth {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 2px solid white;
+        }
+
+        #auth h2 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .authButton {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .authButton:hover {
+            background-color: #2980b9;
+        }
+
+        #authForm input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #ddd;
+        }
+
+        #authForm button {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        #authForm button:hover {
+            background-color: #27ae60;
+        }
+
+        #authMessage {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* Main Section */
+        #main {
+            display: none;
+        }
+
+        /* Chat Section */
+        #chat {
+            background-color: rgba(82, 76, 76, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            height: 70vh;
+            border: 2px solid #fff9f9;
+            overflow: hidden;
+        }
+
+        #chatMessages {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            border: 2px solid white;
+        }
+
+        #chatForm {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background-color: #333;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        #sendButton, #uploadButton, #deleteButton {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            width: 30px;
+        }
+
+        #sendButton:hover, #uploadButton:hover, #deleteButton:hover {
+            background-color: #27ae60;
+        }
+
+        #uploadButton {
+            background-color: #3498db;
+        }
+
+        #uploadButton:hover {
+            background-color: #2980b9;
+        }
+
+        #deleteButton {
+            background-color: #e74c3c;
+        }
+
+        #deleteButton:hover {
+            background-color: #c0392b;
+        }
+
+        /* File Input Styles */
+        .fileInput {
+            display: none;
+        }
+
+        /* Chat Message Styles */
+        .chat-message {
+            background-color: #02775af8;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            position: relative;
+            border: 2px solid black;
+            width: 100%;
+        }
+
+        .message-content {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .message-content img {
+            width: 100%;
+            border-radius: 4px;
+            height: auto;
+        }
+
+        .message-timestamp {
+            font-size: 12px;
+            color: #fef9f9;
+            text-align: right;
+        }
+
+        .message-date {
+            font-size: 12px;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            border: solid 2px rgb(0, 0, 0);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .message-actions i {
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Image Preview */
+        #imagePreview {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            z-index: 1000;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        #imagePreview img {
+            width: 100%;
+            height: auto;
+        }
+
+        #imagePreview span {
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffffff;
+            background: #000000;
+        }
+
+        footer p {
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>OFFICE TEAMS <i class="fa-solid fa-people-group"></i></h1>
+        <button id="logoutButton">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </header>
+    <main>
+        <section id="auth">
+            <h2>OFFICE TEAMS LOGIN <i class="fa-solid fa-people-group"></i></h2>
+            <div id="authMode">
+                <button id="loginMode" class="authButton">Login</button>
+                <button id="signupMode" class="authButton">Create Account</button>
+            </div>
+            <form id="authForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="username" placeholder="Username (Required for Signup)" style="display: none;">
+                <button type="submit" id="submitButton">Submit</button>
+            </form>
+            <p id="authMessage"></p>
+        </section>
+        <section id="main" style="display: none;">
+            <section id="chat">
+                <h2><i class="fa-regular fa-comment">Chat</i></h2>
+                <div id="chatMessages"></div>
+                <form id="chatForm">
+                    <input type="text" id="messageInput" placeholder="Type your message here" > <label for="fileInput" id="uploadButton">
+                        <input type="file" class="fileInput" id="fileInput">
+                        <span><i class="fa-solid fa-cloud-arrow-up"></i> </span>
+                    </label>
+                    <div class="button-group">
+                       
+                        
+                        <button type="submit" id="uploadButton" id="sendButton"><i class="fa-solid fa-paper-plane"></i> </button>
+                    </div>
+                </form>
+                
+            </section>
+        </section>
+    </main>
+    <div id="imagePreview">
+        <img id="previewImage" src="" alt="Image Preview">
+        <span id="closePreview">Close</span>
+    </div>
+    <footer>
+        <p>&copy; 2024 Kanchan Santosh Katyare</p>
+    </footer>
+    
+    <!-- Firebase SDK -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... your existing head content ... -->
+</head>
+<body>
+    <!-- ... your existing body content ... -->
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, setDoc, getDoc, query, orderBy,doc } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js';
+        import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-storage.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js';
+        import {  deleteDoc } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBx4fy6AVoOcYF36pU4-NbnWTF9Et1qJwE",
+            authDomain: "chat-21df0.firebaseapp.com",
+            projectId: "chat-21df0",
+            storageBucket: "chat-21df0.appspot.com",
+            messagingSenderId: "434728817636",
+            appId: "1:434728817636:web:6d8b6e0807953ad8eeedf1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+        const auth = getAuth(app);
+
+        const authSection = document.getElementById('auth');
+        const mainSection = document.getElementById('main');
+        const logoutButton = document.getElementById('logoutButton');
+        const authForm = document.getElementById('authForm');
+        const usernameInput = document.getElementById('username');
+        const submitButton = document.getElementById('submitButton');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const messageInput = document.getElementById('messageInput');
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImage = document.getElementById('previewImage');
+        const closePreview = document.getElementById('closePreview');
+
+        let currentDate = '';
+
+        // Function to show authentication section
+        function showAuth() {
+            authSection.style.display = 'block';
+            mainSection.style.display = 'none';
+        }
+
+        // Function to show main content
+        function showMain() {
+            authSection.style.display = 'none';
+            mainSection.style.display = 'block';
+        }
+
+        // Function to switch to login mode
+        function showLoginMode() {
+            usernameInput.style.display = 'none';
+            submitButton.textContent = 'Login';
+        }
+
+        // Function to switch to signup mode
+        function showSignupMode() {
+            usernameInput.style.display = 'block';
+            submitButton.textContent = 'Create Account';
+        }
+
+        // Event listeners for authentication mode
+        document.getElementById('loginMode').addEventListener('click', showLoginMode);
+        document.getElementById('signupMode').addEventListener('click', showSignupMode);
+
+        // Monitor authentication state
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                showMain();
+                console.log('User is logged in:', user.email);
+            } else {
+                showAuth();
+                console.log('No user logged in');
+            }
+        });
+
+        // Authentication form submission
+        authForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const username = document.getElementById('username').value;
+
+            try {
+                if (submitButton.textContent === 'Create Account') {
+                    if (!username) throw new Error('Username is required for signup.');
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    console.log('User registered:', userCredential.user);
+                    await setDoc(doc(db, 'users', userCredential.user.uid), { username: username });
+                    showMain();
+                } else {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log('User signed in:', userCredential.user);
+                    showMain();
+                }
+            } catch (error) {
+                document.getElementById('authMessage').textContent = error.message;
+            }
+        });
+
+        // Logout button event listener
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                showAuth();
+            }).catch((error) => {
+                console.error('Sign out error:', error);
+            });
+        });
+
+        // Chat functionality
+        const chatCollection = collection(db, 'chats');
+
+        async function getUserName(uid) {
+            try {
+                const userDoc = await getDoc(doc(db, 'users', uid));
+                return userDoc.exists() ? userDoc.data().username : 'Anonymous';
+            } catch (error) {
+                console.error('Error fetching user name:', error);
+                return 'Anonymous';
+            }
+        }
+
+        function formatTimestamp(timestamp) {
+            const date = timestamp.toDate();
+            return {
+                date: date.toLocaleDateString(),
+                time: date.toLocaleTimeString()
+            };
+        }
+
+        // Function to send a message
+        async function sendMessage(message, imageUrl = '', fileType = '') {
+            const user = auth.currentUser;
+            const username = user ? await getUserName(user.uid) : 'Anonymous';
+            return addDoc(chatCollection, {
+                text: message,
+                imageUrl: imageUrl,
+                fileType: fileType,
+                timestamp: serverTimestamp(),
+                user: username
+            });
+        }
+
+        function loadMessages() {
+    const q = query(chatCollection, orderBy('timestamp', 'asc'));
+    onSnapshot(q, (snapshot) => {
+        chatMessages.innerHTML = ''; // Clear existing messages
+
+        snapshot.forEach(docSnapshot => {
+            const message = docSnapshot.data();
+            const docId = docSnapshot.id; // Get document ID
+            const { date, time } = formatTimestamp(message.timestamp);
+
+            // Only add a new date section if the date has changed
+            if (currentDate !== date) {
+                const dateElement = document.createElement('div');
+                dateElement.classList.add('message-date');
+                dateElement.textContent = date;
+                chatMessages.appendChild(dateElement);
+                currentDate = date; // Update currentDate to the new date
+            }
+
+            // Create and append message element
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+            
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-content');
+            
+            const messageText = document.createElement('p');
+            messageText.innerHTML = `<strong>${message.user}</strong>: ${message.text}`;
+            
+            if (message.imageUrl) {
+                if (message.fileType === 'pdf') {
+                    const pdfLink = document.createElement('a');
+                    pdfLink.href = message.imageUrl;
+                    pdfLink.download = true;
+                    pdfLink.classList.add('pdf-link');
+                    pdfLink.innerHTML = `<i class="fa-solid fa-file-pdf"></i> Download PDF`;
+                    messageContent.appendChild(pdfLink);
+                } else {
+                    const imageElement = document.createElement('img');
+                    imageElement.src = message.imageUrl;
+                    messageContent.appendChild(messageText);
+                    messageContent.appendChild(imageElement);
+                }
+            } else {
+                messageContent.appendChild(messageText);
+            }
+            
+            const timestampElement = document.createElement('div');
+            timestampElement.classList.add('message-timestamp');
+            timestampElement.textContent = time;
+            
+            // Create delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-button');
+            deleteButton.addEventListener('click', async () => {
+                try {
+                    // Correct usage of `doc` function
+                    await deleteDoc(doc(db, 'chats', docId));
+                    console.log('Message successfully deleted!');
+                } catch (error) {
+                    console.error('Error deleting message: ', error);
+                }
+            });
+            
+            messageElement.appendChild(messageContent);
+            messageElement.appendChild(timestampElement);
+            messageElement.appendChild(deleteButton);
+            
+            chatMessages.appendChild(messageElement);
+        });
+
+        // Scroll to the bottom to show the latest messages
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+}
+
+
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const message = messageInput.value.trim();
+            const file = fileInput.files[0];
+
+            if (message || file) {
+                if (file) {
+                    const fileRef = ref(storage, `chat-files/${file.name}`);
+                    uploadBytes(fileRef, file).then(async (snapshot) => {
+                        const fileUrl = await getDownloadURL(fileRef);
+                        await sendMessage(message, fileUrl, file.type);
+                    }).catch((error) => {
+                        console.error('Upload failed:', error);
+                    });
+                } else {
+                    sendMessage(message);
+                }
+                messageInput.value = '';
+                fileInput.value = '';
+            }
+        });
+
+        // Handle file input change
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImage.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+        uploadButton.addEventListener('click', function() {
+    const file = fileInput.files[0];
+    if (file) {
+        const fileRef = ref(storage, 'images/' + file.name);
+        const fileType = file.type;
+
+        if (fileType.startsWith('image/')) {
+            // Image file
+            uploadBytes(fileRef, file).then(snapshot => {
+                console.log('Uploaded a file!');
+                return getDownloadURL(fileRef);
+            }).then(url => {
+                // Show preview
+                previewImage.src = url;
+                imagePreview.style.display = 'flex'; // Show preview
+                document.getElementById('uploadButton').textContent = 'Send Image';
+                document.getElementById('uploadButton').onclick = () => {
+                    sendMessage('', url).then(() => {
+                        console.log('Image metadata saved and sent as message!');
+                        imagePreview.style.display = 'none'; // Hide preview after sending
+                    }).catch(error => {
+                        console.error('Error sending image:', error);
+                    });
+                };
+            }).catch(error => {
+                console.error('Upload failed:', error);
+            });
+        } else if (fileType === 'application/pdf') {
+            // PDF file
+            uploadBytes(fileRef, file).then(snapshot => {
+                console.log('Uploaded a file!');
+                return getDownloadURL(fileRef);
+            }).then(url => {
+                sendMessage('', url, 'pdf').then(() => {
+                    console.log('PDF metadata saved and sent as message!');
+                }).catch(error => {
+                    console.error('Error sending PDF:', error);
+                });
+            }).catch(error => {
+                console.error('Upload failed:', error);
+            });
+        } else {
+            console.error('Unsupported file type');
+        }
+    }
+});
+
+        closePreview.addEventListener('click', () => {
+            imagePreview.style.display = 'none';
+        });
+
+        // Initial load of messages
+        loadMessages();
+    </script>
+</body>
+</html>
+
+
